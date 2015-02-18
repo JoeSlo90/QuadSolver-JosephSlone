@@ -1,0 +1,53 @@
+//Joseph Slone's Quadradic Formula calculator 2/6/2015
+
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+int main()
+{
+	//Creates all neccesary variables
+	float A = 0;
+	float B = 0;
+	float C= 0;
+	float y1 = 0;
+	float check = 0;
+	float y2 = 0;
+Start:
+	//The formula goes y = (-b +- sqrt(b^2 - 4AC))/2A, so we require 3 variables from the user to find y: A, B, and C.
+	system("cls");
+	cout<<"I see you need to do the quadradic formula. You've come to the right place!"<<endl;
+	cout<<"I assume you know the general form of your quadradic equasion (Ax+Bx+C)"<<endl;
+	cout<<"So let's start with A. Enter A's value now. ";
+	cin>>A;
+	cout<<"\nOk,now let's enter B's value. ";
+	cin>>B;
+	cout<<"\nAll that's left is C. ";
+	cin>>C;
+	//check will makes sure that b^2 - 4AC is not negative. If the value is negative, then we have no real solutions.
+	check = B*B;
+	check += -4*A*C;
+	if (check < 0)
+	{
+		cout<<"Oh, it looks like there's no real solution."<<endl;
+		system("pause");
+		goto Start;
+	}
+	else
+	{
+		//Now that we have b^2 - 4AC = check, we can use it to quickly evaluate the formula for two answers, y1 and y2:
+		y1 += -B;
+		y2 += -B;
+		check = sqrt(check);
+		//Because the formula calls for both adding and subtracting the square root of b^2 - 4AC to find the two different answers, we add check to one and subtract check from the other.
+		y1 += check;
+		y2 += -check;
+		//All that is left is dividing by 2A!
+		y1 = y1/(2*A);
+		y2 = y2/(2*A);
+		cout<<"Your values are "<<y1<<" and "<<y2<<"!"<<endl;
+		system("pause");
+		goto Start;
+	}
+	return 0;
+}
